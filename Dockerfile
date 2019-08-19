@@ -17,20 +17,18 @@ RUN apt-get update && apt-get install -y \
 
 RUN useradd -ms /bin/bsash --create-home ubuntu && \
     echo "ubuntu ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu && \
-    chmod 0440 /etc/sudoers.d/ubuntu
-
-## OWN the system package libraries.
-RUN chown ubuntu --recursive /usr/local/
-
+    chmod 0440 /etc/sudoers.d/ubuntu && \
+    chown ubuntu --recursive /usr/local/
 
 USER ubuntu
+
 WORKDIR /home/ubuntu
 
 ## Standard Requirements.
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt && rm requirements.txt
 
-## BASH config.
+## Configs
 COPY .bashrc .bashrc
 COPY jupyter_notebook_config.py .jupyter/
 
