@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     r-recommended \
     r-base \
     r-base-dev \
+    r-cran-remotes \
     sudo
 
 RUN useradd -ms /bin/bsash --create-home ubuntu && \
