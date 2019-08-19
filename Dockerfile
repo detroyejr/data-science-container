@@ -27,6 +27,7 @@ WORKDIR /home/ubuntu
 ## Standard Requirements.
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt && rm requirements.txt
+RUN R -e "install.packages('IRkernel'); IRkernel::installspec(user = FALSE)"
 
 ## Configs
 COPY .bashrc .bashrc
